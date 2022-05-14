@@ -3,7 +3,9 @@ package ru.netology.stats;
 public class StatsService {
 
     public int sumSales(long[] sales) {
+
         int sum = 0;
+
         for (long sale : sales) {
             sum += sale;
         }
@@ -11,33 +13,32 @@ public class StatsService {
     }
 
     public int averageSales(long[] sales) {
+
         int averageMouth = 0;
-        int sum = 0;
-        for (long sale : sales) {
-            sum += sale;
-            averageMouth = sum / sales.length;
-        }
+
+        averageMouth = sumSales(sales) / sales.length;
         return (averageMouth);
     }
 
     public int minSales(long[] sales) {
 
         int minMonth = 0;
-        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        int month = 0;
+
         for (long sale : sales) {
-            // sales[minMonth] - продажи в месяце minMonth
-            // sale - продажи в рассматриваемом месяце
             if (sale < sales[minMonth]) {
                 minMonth = month;
             }
-            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
+            month = month + 1;
         }
         return minMonth + 1;
     }
 
     public int maxSales(long[] sales) {
+
         int maxMouth = 0;
         int mouth = 0;
+
         for (long sale : sales) {
             if (sale >= sales[maxMouth]) {
                 maxMouth = mouth;
@@ -49,35 +50,23 @@ public class StatsService {
 
     public int aboveAverage(long[] sales) {
         int aboveAverageSalesMonth = 0;
-        int averageSales = 0;
-        int sum = 0;
 
         for (long sale : sales) {
-            sum += sale;
-            averageSales = sum / sales.length;
-        }
-
-        for (long sale : sales)
-            if (sale > averageSales) {
+            if (sale > averageSales(sales)) {
                 aboveAverageSalesMonth += 1;
             }
+        }
         return aboveAverageSalesMonth;
     }
 
     public int underAverage(long[] sales) {
         int underAverageSalesMonth = 0;
-        int averageSales = 0;
-        int sum = 0;
 
         for (long sale : sales) {
-            sum += sale;
-            averageSales = sum / sales.length;
-        }
-
-        for (long sale : sales)
-            if (sale < averageSales) {
+            if (sale < averageSales(sales)) {
                 underAverageSalesMonth += 1;
             }
+        }
         return underAverageSalesMonth;
     }
 }
